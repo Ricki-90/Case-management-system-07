@@ -73,12 +73,13 @@ namespace Real_estate_Nyckelpigan.Services
 
         public static async Task ListSpecificCaseAsync()
         {
+            //get specific Case from database
             Console.WriteLine("Ange internt ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
             if (!string.IsNullOrEmpty(internalcaseid))
             {
-                //get specific Case from database
+                
                 var _case = await CaseService.GetAsync(internalcaseid);
 
                 if (_case != null)
@@ -109,6 +110,7 @@ namespace Real_estate_Nyckelpigan.Services
 
         public static async Task UpdateSpecificCaseAsync()
         {
+            //update specific Case from database
             Console.WriteLine("Ange internt ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
@@ -146,6 +148,7 @@ namespace Real_estate_Nyckelpigan.Services
 
         public static async Task DeleteSpecificCaseAsync()
         {
+            //delete specific Case from database
             Console.WriteLine("Ange ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 

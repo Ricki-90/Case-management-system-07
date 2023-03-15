@@ -106,7 +106,7 @@ namespace Real_estate_Nyckelpigan.Services
 
         public static async Task DeleteAsync(string internalcaseid)
         {
-            var createCase = await _context.Renters.Include(x => x.Case).FirstOrDefaultAsync(x => x.Case.InternalCaseId == internalcaseid);
+            var createCase = await _context.Renters.Include(x => x.Address).Include(x => x.Case).FirstOrDefaultAsync(x => x.Case.InternalCaseId == internalcaseid);
             if (createCase != null)
             {
                 _context.Remove(createCase);
