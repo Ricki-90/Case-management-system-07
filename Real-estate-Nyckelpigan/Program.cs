@@ -1,11 +1,12 @@
 ﻿using Real_estate_Nyckelpigan.Services;
-using static System.Net.Mime.MediaTypeNames;
 
 var menu = new MenuService();
 
 while (true)
 {
     Console.Clear();
+    Console.WriteLine("Dagens datum och tid är:" + " " + DateTime.Now);
+    Console.WriteLine("");
     Console.WriteLine("1. Skapa ett nytt ärende");
     Console.WriteLine("2. Visa alla aktuella ärenden");
     Console.WriteLine("3. Visa ett specifikt ärende");
