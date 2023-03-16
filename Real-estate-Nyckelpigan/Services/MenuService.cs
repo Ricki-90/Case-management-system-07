@@ -46,6 +46,7 @@ namespace Real_estate_Nyckelpigan.Services
             await CaseService.SaveAsync(CreateRenterAndAddress);
         }
 
+
         public static async Task ListAllCasesAsync()
         {
             //get all Cases from database
@@ -71,6 +72,7 @@ namespace Real_estate_Nyckelpigan.Services
             }
         }
 
+
         public static async Task ListSpecificCaseAsync()
         {
             //get specific Case from database
@@ -79,7 +81,6 @@ namespace Real_estate_Nyckelpigan.Services
 
             if (!string.IsNullOrEmpty(internalcaseid))
             {
-                
                 var _case = await CaseService.GetAsync(internalcaseid);
 
                 if (_case != null)
@@ -98,8 +99,6 @@ namespace Real_estate_Nyckelpigan.Services
                     Console.WriteLine($"Ingen ärende med den angivna ärendenummer {internalcaseid} hittades. ");
                     Console.WriteLine("");
                 }
-
-
             }
             else
             {
@@ -108,22 +107,21 @@ namespace Real_estate_Nyckelpigan.Services
             }
         }
 
+
         public static async Task UpdateSpecificCaseAsync()
         {
             //update specific Case from database
             Console.WriteLine("Ange internt ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
-
             if (!string.IsNullOrEmpty(internalcaseid))
             {
-
                 var _case = await CaseService.GetAsync(internalcaseid);
                 if (_case != null)
                 {
                     Console.WriteLine("Ändra status på ärenden eller lägg till en kommentar: \n");
 
-                    Console.Write("Skriv in ärende status: Ej påbörjat, Påbörjat eller Avslutat:");
+                    Console.Write("Skriv in nya ärende statusen: Ej påbörjat, Påbörjat eller Avslutat:");
                     _case.Status = Console.ReadLine() ?? null!;
 
                     Console.Write("Skriv in en kommentar för ärendet: ");
@@ -146,6 +144,7 @@ namespace Real_estate_Nyckelpigan.Services
             }
         }
 
+
         public static async Task DeleteSpecificCaseAsync()
         {
             //delete specific Case from database
@@ -154,8 +153,8 @@ namespace Real_estate_Nyckelpigan.Services
 
             if (!string.IsNullOrEmpty(internalcaseid))
             {
-                //delete specific renter from database
                 await CaseService.DeleteAsync(internalcaseid);
+                Console.WriteLine("Glöm inte uppdatera/refresh databasen efter du tagit bort ett ärende");
             }
             else
             {

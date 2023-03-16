@@ -1,4 +1,5 @@
 ﻿using Real_estate_Nyckelpigan.Services;
+using static System.Net.Mime.MediaTypeNames;
 
 var menu = new MenuService();
 
@@ -9,8 +10,9 @@ while (true)
     Console.WriteLine("2. Visa alla aktuella ärenden");
     Console.WriteLine("3. Visa ett specifikt ärende");
     Console.WriteLine("4. Uppdatera status på ett specifikt ärende samt skriv kommentar");
-    Console.WriteLine("5. Ta bort ett ärende som är avslutat");
-    Console.Write("Välj ett av följande alternativ (1-5): ");
+    Console.WriteLine("5. Ta bort ett ärende och hyresgäst kopplat till ärendet");
+    Console.WriteLine("6. Avsluta programmet");
+    Console.Write("Välj ett av följande alternativ (1-6): ");
 
     switch (Console.ReadLine())
     {
@@ -37,6 +39,11 @@ while (true)
         case "5":
             Console.Clear();
             await MenuService.DeleteSpecificCaseAsync();
+            break;
+
+        case "6":
+            Console.Clear();
+            Environment.Exit(0);
             break;
     }
 

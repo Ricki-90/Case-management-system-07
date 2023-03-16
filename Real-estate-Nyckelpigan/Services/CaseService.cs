@@ -8,7 +8,6 @@ namespace Real_estate_Nyckelpigan.Services
     internal class CaseService
     {
         public static DataContext _context = new DataContext();
-
         public static async Task SaveAsync(CreateCase createCase)
         {
 
@@ -20,9 +19,7 @@ namespace Real_estate_Nyckelpigan.Services
                 PhoneNumber = createCase.PhoneNumber,
             };
 
-
             var addressEntity = await _context.Addresses.FirstOrDefaultAsync(x => x.StreetName == createCase.StreetName && x.PostalCode == createCase.PostalCode && x.City == createCase.City);
-
             if (addressEntity != null)
                 _RenterEntity.AddressId = addressEntity.Id;
 
@@ -35,7 +32,6 @@ namespace Real_estate_Nyckelpigan.Services
                 };
 
             var caseEntity = await _context.Cases.FirstOrDefaultAsync(x => x.Description == createCase.Description && x.Status == createCase.Status && x.IncomingDate == createCase.IncomingDate);
-
             if (caseEntity != null)
                 _RenterEntity.CaseId = caseEntity.Id;
 
