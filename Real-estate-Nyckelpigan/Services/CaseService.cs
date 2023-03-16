@@ -111,5 +111,26 @@ namespace Real_estate_Nyckelpigan.Services
                 await _context.SaveChangesAsync();
             }
         }
+
+        public static async Task<IEnumerable<CreateCase>> GetCaseRenterAsync()
+        {
+            var _createCases = new List<CreateCase>();
+
+            foreach (var _createCase in await _context.Renters.Include(x => x.Case).Include(x => x.Address).ToListAsync())
+                _createCases.Add(new CreateCase
+                {
+                    Id = _createCase.Id,
+                    FirstName = _createCase.FirstName,
+                    LastName = _createCase.LastName,
+                    Email = _createCase.Email,
+                    PhoneNumber = _createCase.PhoneNumber,
+                    StreetName = _createCase.Address.StreetName,
+                    PostalCode = _createCase.Address.PostalCode,
+                    City = _createCase.Address.City,
+                    CaseId = _createCase.CaseId,
+                    InternalCaseId = _createCase.Case.InternalCaseId
+                });
+            return _createCases;
+        }
     }
 }

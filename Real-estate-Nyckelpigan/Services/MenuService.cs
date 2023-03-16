@@ -86,7 +86,7 @@ namespace Real_estate_Nyckelpigan.Services
                 if (_case != null)
                 {
                     Console.WriteLine($"Hyresgästnummer på hyresgäst som felanmälde: {_case.Id}");
-                    Console.WriteLine($"Ärendenummer: {_case.InternalCaseId}");
+                    Console.WriteLine($"Internt ärendenummer: {_case.InternalCaseId}");
                     Console.WriteLine($"Beskrivning ärende: {_case.Description}");
                     Console.WriteLine($"Status ärende: {_case.Status}");
                     Console.WriteLine($"Inkommet datum på ärende: {_case.IncomingDate}");
@@ -119,8 +119,8 @@ namespace Real_estate_Nyckelpigan.Services
                 var _case = await CaseService.GetAsync(internalcaseid);
                 if (_case != null)
                 {
-                    Console.WriteLine("Ändra status på ärenden eller lägg till en kommentar: \n");
-
+                    Console.WriteLine("");
+                    Console.WriteLine("Ändra status på ärenden eller lägg till en kommentar \n");
                     Console.Write("Skriv in nya ärende statusen: Ej påbörjat, Påbörjat eller Avslutat:");
                     _case.Status = Console.ReadLine() ?? null!;
 
@@ -159,6 +159,36 @@ namespace Real_estate_Nyckelpigan.Services
             else
             {
                 Console.WriteLine($"Ingen ärendenummer angiven.");
+                Console.WriteLine("");
+            }
+        }
+
+        public static async Task ListAllCasesAndRentersAsync()
+        {
+            //get all Cases from database
+            var renters = await CaseService.GetCaseRenterAsync();
+
+            if (renters.Any())
+            {
+                Console.WriteLine($"Nedan är information på hyresgästen och vilket ärendenummer som är kopplat till hyresgästen:");
+                Console.WriteLine("");
+                foreach (CreateCase _case in renters)
+                {
+   
+                    Console.WriteLine($"Hyresgäst ID: {_case.Id}");
+                    Console.WriteLine($"Namn: {_case.FirstName} {_case.LastName}");
+                    Console.WriteLine($"Email: {_case.Email}");
+                    Console.WriteLine($"Tel: {_case.PhoneNumber}");
+                    Console.WriteLine($"Adressen: {_case.StreetName}");
+                    Console.WriteLine($"Stad: {_case.PostalCode}, {_case.City}");
+                    Console.WriteLine($"Ärende ID i databasen: {_case.CaseId}");
+                    Console.WriteLine($"Internt ärendenummer: {_case.InternalCaseId}");
+                    Console.WriteLine("");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Inga aktuella hyresgäster med ärenden finns i databasen");
                 Console.WriteLine("");
             }
         }

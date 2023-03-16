@@ -15,5 +15,7 @@
         public string Status { get; set; } = string.Empty;
         public string IncomingDate { get; set; } = string.Empty;
         public string PropertyManagerComment { get; set; } = string.Empty;
+        public int CaseId { get; set; }
+        public int AddressId { get; set; }
     }
 }
