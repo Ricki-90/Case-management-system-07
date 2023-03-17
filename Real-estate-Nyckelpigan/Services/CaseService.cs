@@ -8,6 +8,8 @@ namespace Real_estate_Nyckelpigan.Services
     internal class CaseService
     {
         public static DataContext _context = new DataContext();
+
+        #region SaveAsync
         public static async Task SaveAsync(CreateCase createCase)
         {
 
@@ -48,6 +50,10 @@ namespace Real_estate_Nyckelpigan.Services
             await _context.SaveChangesAsync();
         }
 
+        #endregion
+
+        #region GetAllAsync
+
         public static async Task<IEnumerable<CreateCase>> GetAllAsync()
         {
             var _createCases = new List<CreateCase>();
@@ -64,6 +70,10 @@ namespace Real_estate_Nyckelpigan.Services
                 });
             return _createCases;
         }
+
+        #endregion
+
+        #region GetAsync
 
         public static async Task<CreateCase> GetAsync(string internalcaseid)
         {
@@ -83,6 +93,10 @@ namespace Real_estate_Nyckelpigan.Services
                 return null!;
         }
 
+        #endregion
+
+        #region UpdateAsync
+
         public static async Task UpdateAsync(CreateCase UpdateCase)
         {
 
@@ -100,6 +114,9 @@ namespace Real_estate_Nyckelpigan.Services
             }
         }
 
+        #endregion
+
+        #region DeleteAsync
         public static async Task DeleteAsync(string internalcaseid)
         {
             var createCase = await _context.Renters.Include(x => x.Address).Include(x => x.Case).FirstOrDefaultAsync(x => x.Case.InternalCaseId == internalcaseid);
@@ -112,6 +129,9 @@ namespace Real_estate_Nyckelpigan.Services
             }
         }
 
+        #endregion
+
+        #region GetCaseRenterAsync
         public static async Task<IEnumerable<CreateCase>> GetCaseRenterAsync()
         {
             var _createCases = new List<CreateCase>();
@@ -132,5 +152,7 @@ namespace Real_estate_Nyckelpigan.Services
                 });
             return _createCases;
         }
+
+        #endregion
     }
 }
