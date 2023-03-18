@@ -57,5 +57,4 @@ while (true)
 
     Console.WriteLine("\nTryck på valfri knapp för att försätta...");
     Console.ReadKey();
-
 }

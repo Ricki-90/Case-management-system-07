@@ -5,7 +5,7 @@ namespace Real_estate_Nyckelpigan.Services
 {
     internal class MenuService
     {
-        //Create new Case
+        #region Create new case
         public static async Task CreateCaseAsync()
         {
             var CreateRenterAndAddress = new CreateCase();
@@ -45,11 +45,11 @@ namespace Real_estate_Nyckelpigan.Services
 
             await CaseService.SaveAsync(CreateRenterAndAddress);
         }
+        #endregion
 
-
+        #region Get all cases from database
         public static async Task ListAllCasesAsync()
         {
-            //get all Cases from database
             var renters = await CaseService.GetAllAsync();
 
             if (renters.Any())
@@ -71,11 +71,11 @@ namespace Real_estate_Nyckelpigan.Services
                 Console.WriteLine("");
             }
         }
+        #endregion
 
-
+        #region Get specific case from database
         public static async Task ListSpecificCaseAsync()
         {
-            //get specific Case from database
             Console.WriteLine("Ange internt ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
@@ -106,11 +106,12 @@ namespace Real_estate_Nyckelpigan.Services
                 Console.WriteLine("");
             }
         }
+        #endregion
 
-
+        #region Update specific case from database
         public static async Task UpdateSpecificCaseAsync()
         {
-            //update specific Case from database
+
             Console.WriteLine("Ange internt ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
@@ -127,7 +128,6 @@ namespace Real_estate_Nyckelpigan.Services
                     Console.Write("Skriv in en kommentar för ärendet: ");
                     _case.PropertyManagerComment = Console.ReadLine() ?? null!;
 
-                    //update specific Case from database
                     await CaseService.UpdateAsync(_case);
                 }
                 else
@@ -143,11 +143,12 @@ namespace Real_estate_Nyckelpigan.Services
                 Console.WriteLine("");
             }
         }
+        #endregion
 
-
+        #region Delete specific case from database
         public static async Task DeleteSpecificCaseAsync()
         {
-            //delete specific Case from database
+
             Console.WriteLine("Ange ärendenummer på ärende: ");
             var internalcaseid = Console.ReadLine();
 
@@ -162,10 +163,11 @@ namespace Real_estate_Nyckelpigan.Services
                 Console.WriteLine("");
             }
         }
+        #endregion
 
+        #region Get all cases and renters from database
         public static async Task ListAllCasesAndRentersAsync()
         {
-            //get all Cases from database
             var renters = await CaseService.GetCaseRenterAsync();
 
             if (renters.Any())
@@ -192,6 +194,6 @@ namespace Real_estate_Nyckelpigan.Services
                 Console.WriteLine("");
             }
         }
-
+        #endregion
     }
 }
